@@ -4,7 +4,7 @@
 <div class="max-w-4xl mx-auto">
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="bg-primary-600 px-6 py-8">
-            <h1 class="text-3xl font-bold text-white">Student Interview Registration</h1>
+            <h1 class="text-3xl font-bold text-white">Hult Prize Interview Registration</h1>
             <p class="mt-2 text-primary-100">Track: {{ $mainTrack->name }}</p>
         </div>
         
@@ -222,7 +222,8 @@
                         <label for="preferred_date" class="block text-sm font-medium text-gray-700 mb-1">Preferred Date <span class="text-red-500">*</span></label>
                         <input type="date" id="preferred_date" name="preferred_date" value="{{ old('preferred_date') }}" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                            min="{{ now()->format('Y-m-d') }}">
+                            min="{{ now()->format('Y-m-d') }}"
+                            max="2026-10-07">
                     </div>
                     
                     <div>

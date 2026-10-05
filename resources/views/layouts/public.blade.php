@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Student Interview Booking') }} - {{ $title ?? 'Register' }}</title>
-    
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,17 +14,29 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        }
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec2088',
+                            600: '#d91b78',
+                            700: '#b91566',
+                            800: '#991254',
+                            900: '#831046',
+                        },
+                        secondary: {
+                            50: '#f5f4fa',
+                            100: '#e9e8f2',
+                            200: '#d3d1e5',
+                            300: '#b5b2d0',
+                            400: '#918db8',
+                            500: '#292563',
+                            600: '#252158',
+                            700: '#211d4d',
+                            800: '#1c1941',
+                            900: '#171436',
+                        },
                     }
                 }
             }
@@ -43,8 +55,7 @@
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center">
                         <a href="{{ route('recruitment') }}" class="text-xl font-bold text-primary-600">
-                            <i class="fas fa-graduation-cap mr-2"></i>
-                            Student Interview Booking
+                            <img src="{{ asset('logo2.png') }}" alt="Student Interview Booking" class="h-10 w-auto">
                         </a>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -65,7 +76,7 @@
         <footer class="bg-white border-t mt-auto">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <p class="text-center text-gray-500 text-sm">
-                    &copy; {{ date('Y') }} Student Interview Booking System. All rights reserved.
+                    &copy; {{ date('Y') }} Hult Prize SAMS. All rights reserved.
                 </p>
             </div>
         </footer>

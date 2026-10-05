@@ -32,7 +32,7 @@
             </div>
             
             <div class="mt-6 pt-4 border-t">
-                <span class="inline-flex items-center px-4 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors group-hover:bg-primary-700">
+                <span class="inline-flex w-full items-center px-4 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors group-hover:bg-primary-700">
                     <i class="fas fa-arrow-right mr-2"></i>
                     Apply for Technical
                 </span>
@@ -43,7 +43,7 @@
         <a href="{{ route('registration.track', 'non-technical') }}" 
            class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 hover:shadow-lg hover:border-primary-300 transition-all duration-300 group">
             <div class="text-center mb-6">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-secondary-100 text-secondary-600 group-hover:bg-secondary-600 group-hover:text-white transition-colors">
                     <i class="fas fa-briefcase text-3xl"></i>
                 </div>
             </div>
@@ -56,14 +56,14 @@
                     if ($nonTechnical) {
                         $subTracks = $nonTechnical->children()->active()->orderBy('name')->get();
                         foreach ($subTracks as $sub) {
-                            echo '<div class="flex items-center justify-center"><i class="fas fa-chevron-right mr-2 text-green-400"></i>' . $sub->name . '</div>';
+                            echo '<div class="flex items-center justify-center"><i class="fas fa-chevron-right mr-2 text-secondary-400"></i>' . $sub->name . '</div>';
                         }
                     }
                 @endphp
             </div>
             
             <div class="mt-6 pt-4 border-t">
-                <span class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors group-hover:bg-green-700">
+                <span class="inline-flex w-full items-center px-4 py-2 bg-secondary-600 text-white font-medium rounded-lg hover:bg-secondary-700 transition-colors group-hover:bg-secondary-700">
                     <i class="fas fa-arrow-right mr-2"></i>
                     Apply for Non-Technical
                 </span>
