@@ -52,12 +52,22 @@
                     <div>
                         <label for="major" class="block text-sm font-medium text-gray-700 mb-1">Major <span class="text-red-500">*</span></label>
                         <select id="major" name="major" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            onchange="toggleMajorOther(this)">
                             <option value="">Select Major</option>
                             @foreach($majors as $major)
                                 <option value="{{ $major }}" {{ old('major') == $major ? 'selected' : '' }}>{{ $major }}</option>
                             @endforeach
                         </select>
+                        <div id="major_other_container" class="mt-2 hidden">
+                            <label for="major_other" class="block text-sm font-medium text-gray-700 mb-1">Please specify your major <span class="text-red-500">*</span></label>
+                            <input type="text" id="major_other" name="major_other" value="{{ old('major_other') }}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="Enter your major">
+                            @error('major_other')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                         @error('major')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -66,12 +76,22 @@
                     <div>
                         <label for="academic_year" class="block text-sm font-medium text-gray-700 mb-1">Academic Year <span class="text-red-500">*</span></label>
                         <select id="academic_year" name="academic_year" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            onchange="toggleAcademicYearOther(this)">
                             <option value="">Select Academic Year</option>
                             @foreach($academicYears as $year)
                                 <option value="{{ $year }}" {{ old('academic_year') == $year ? 'selected' : '' }}>{{ $year }}</option>
                             @endforeach
                         </select>
+                        <div id="academic_year_other_container" class="mt-2 hidden">
+                            <label for="academic_year_other" class="block text-sm font-medium text-gray-700 mb-1">Please specify your academic year <span class="text-red-500">*</span></label>
+                            <input type="text" id="academic_year_other" name="academic_year_other" value="{{ old('academic_year_other') }}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="Enter your academic year (e.g., 5th, Masters, PhD)">
+                            @error('academic_year_other')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                         @error('academic_year')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -328,5 +348,48 @@
     
     // Initialize on page load
     toggleActivityField();
+    
+    // Toggle Major "Other" field
+    function toggleMajorOther(select) {
+        const container = document.getElementById('major_other_container');
+        const input = document.getElementById('major_other');
+        if (select.value === 'Other') {
+            container.classList.remove('hidden');
+            input.required = true;
+        } else {
+            container.classList.add('hidden');
+            input.required = false;
+            input.value = '';
+        }
+    }
+    
+    // Toggle Academic Year "Other" field
+    function toggleAcademicYearOther(select) {
+        const container = document.getElementById('academic_year_other_container');
+        const input = document.getElementById('academic_year_other');
+        if (select.value === 'Other') {
+            container.classList.remove('hidden');
+            input.required = true;
+        } else {
+            container.classList.add('hidden');
+            input.required = false;
+            input.value = '';
+        }
+    }
+    
+    // Initialize on page load
+    toggleActivityField();
+    
+    // Initialize Major Other field if already selected
+    const majorSelect = document.getElementById('major');
+    if (majorSelect) {
+        toggleMajorOther(majorSelect);
+    }
+    
+    // Initialize Academic Year Other field if already selected
+    const academicYearSelect = document.getElementById('academic_year');
+    if (academicYearSelect) {
+        toggleAcademicYearOther(academicYearSelect);
+    }
 </script>
 @endpush

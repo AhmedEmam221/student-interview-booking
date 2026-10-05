@@ -7,29 +7,21 @@ use Illuminate\Validation\Rule;
 
 class StoreApplicationRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:20', 'regex:/^[\d\s\-\+\(\)]+$/'],
-            'major' => ['required', Rule::in(['CS', 'BIS', 'Language and Translation'])],
-            'academic_year' => ['required', Rule::in(['1st', '2nd', '3rd', '4th'])],
+            'major' => ['required', 'string', 'max:100'],
+            'major_other' => ['nullable', 'required_if:major,Other', 'string', 'max:100'],
+            'academic_year' => ['required', 'string', 'max:20'],
+            'academic_year_other' => ['nullable', 'required_if:academic_year,Other', 'string', 'max:20'],
             'track_id' => ['required', 'exists:tracks,id'],
             'schedule_slot_id' => ['required', 'exists:schedule_slots,id'],
             'strengths' => ['nullable', 'array'],
@@ -44,11 +36,6 @@ class StoreApplicationRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
@@ -58,9 +45,9 @@ class StoreApplicationRequest extends FormRequest
             'phone.required' => 'Phone number is required.',
             'phone.regex' => 'Please provide a valid phone number.',
             'major.required' => 'Major is required.',
-            'major.in' => 'Please select a valid major.',
+            'major_other.required_if' => 'Please specify your major.',
             'academic_year.required' => 'Academic year is required.',
-            'academic_year.in' => 'Please select a valid academic year.',
+            'academic_year_other.required_if' => 'Please specify your academic year.',
             'track_id.required' => 'Track is required.',
             'track_id.exists' => 'Selected track is invalid.',
             'schedule_slot_id.required' => 'Time slot is required.',
@@ -68,5 +55,20 @@ class StoreApplicationRequest extends FormRequest
             'joined_activity_before.required' => 'Please indicate if you joined a student activity before.',
             'activity_name.required_if' => 'Activity name is required when you have joined an activity before.',
         ];
+    }
+    
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        // If "Other" is selected, use the custom input value
+        if ($this->major === 'Other' && $this->filled('major_other')) {
+            $this->merge(['major' => $this->major_other]);
+        }
+        
+        if ($this->academic_year === 'Other' && $this->filled('academic_year_other')) {
+            $this->merge(['academic_year' => $this->academic_year_other]);
+        }
     }
 }

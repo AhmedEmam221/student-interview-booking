@@ -58,8 +58,8 @@ class RegistrationController extends Controller
         $strengths = Strength::active()->orderBy('name')->get();
         $weaknesses = Weakness::active()->orderBy('name')->get();
         
-        $majors = ['CS', 'BIS', 'Language and Translation'];
-        $academicYears = ['1st', '2nd', '3rd', '4th'];
+        $majors = ['CS', 'BIS', 'Language and Translation', 'Other'];
+        $academicYears = ['1st', '2nd', '3rd', '4th', 'Other'];
 
         return view('public.register', compact(
             'mainTrack',
