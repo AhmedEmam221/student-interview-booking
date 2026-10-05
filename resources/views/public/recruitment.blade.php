@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Student Interview Recruitment</h1>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Hult Prize SAMS Recruitment</h1>
         <p class="text-xl text-gray-600">Choose your track to start the registration process</p>
     </div>
 
