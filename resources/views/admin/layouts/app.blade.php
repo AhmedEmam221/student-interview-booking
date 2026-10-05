@@ -231,7 +231,6 @@
             </main>
         </div>
     </div>
-    
     <script>
         // Sidebar toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -241,48 +240,132 @@
             const collapseToggle = document.getElementById('sidebarCollapseToggle');
             const collapseIcon = document.getElementById('collapseIcon');
             const mobileToggle = document.getElementById('sidebarToggle');
-            
-            // Check localStorage for sidebar state
+
+            // Check localStorage for desktop sidebar state
             const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+
             if (isCollapsed) {
                 sidebar.classList.add('collapsed');
                 contentArea.classList.add('sidebar-collapsed');
                 topBar.classList.add('sidebar-collapsed');
-                if (collapseIcon) collapseIcon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+
+                if (collapseIcon) {
+                    collapseIcon.classList.replace(
+                        'fa-chevron-left',
+                        'fa-chevron-right'
+                    );
+                }
             }
-            
-            // Desktop collapse toggle
+
+            // ==========================================
+            // DESKTOP COLLAPSE TOGGLE
+            // ==========================================
             if (collapseToggle) {
                 collapseToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('collapsed');
-                    contentArea.classList.toggle('sidebar-collapsed');
-                    topBar.classList.toggle('sidebar-collapsed');
-                    
-                    const isNowCollapsed = sidebar.classList.contains('collapsed');
-                    localStorage.setItem('sidebarCollapsed', isNowCollapsed);
-                    
-                    if (collapseIcon) {
-                        if (isNowCollapsed) {
-                            collapseIcon.classList.replace('fa-chevron-left', 'fa-chevron-right');
-                        } else {
-                            collapseIcon.classList.replace('fa-chevron-right', 'fa-chevron-left');
+
+                    // Only use desktop collapse behavior
+                    if (window.innerWidth >= 1024) {
+
+                        sidebar.classList.toggle('collapsed');
+                        contentArea.classList.toggle('sidebar-collapsed');
+                        topBar.classList.toggle('sidebar-collapsed');
+
+                        const isNowCollapsed =
+                            sidebar.classList.contains('collapsed');
+
+                        localStorage.setItem(
+                            'sidebarCollapsed',
+                            isNowCollapsed
+                        );
+
+                        if (collapseIcon) {
+                            if (isNowCollapsed) {
+                                collapseIcon.classList.replace(
+                                    'fa-chevron-left',
+                                    'fa-chevron-right'
+                                );
+                            } else {
+                                collapseIcon.classList.replace(
+                                    'fa-chevron-right',
+                                    'fa-chevron-left'
+                                );
+                            }
                         }
                     }
                 });
             }
-            
-            // Mobile toggle
+
+            // ==========================================
+            // MOBILE TOGGLE
+            // ==========================================
             if (mobileToggle) {
                 mobileToggle.addEventListener('click', function() {
+
                     sidebar.classList.toggle('translate-x-0');
                     sidebar.classList.toggle('-translate-x-full');
                 });
             }
-            
-            // Close mobile sidebar when clicking outside
-            document.addEventListener('click', function(e) {
+
+            // ==========================================
+            // AUTOMATIC MOBILE SIDEBAR STATE
+            // ==========================================
+            function handleResponsiveSidebar() {
+
                 if (window.innerWidth < 1024) {
-                    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+
+                    // Automatically hide sidebar on phone/tablet
+                    sidebar.classList.remove('translate-x-0');
+                    sidebar.classList.add('-translate-x-full');
+
+                } else {
+
+                    // Remove mobile classes when returning to desktop
+                    sidebar.classList.remove('-translate-x-full');
+
+                    // Restore desktop collapsed state
+                    const isCollapsed =
+                        localStorage.getItem('sidebarCollapsed') === 'true';
+
+                    if (isCollapsed) {
+                        sidebar.classList.add('collapsed');
+                        contentArea.classList.add('sidebar-collapsed');
+                        topBar.classList.add('sidebar-collapsed');
+
+                        if (collapseIcon) {
+                            collapseIcon.classList.remove('fa-chevron-left');
+                            collapseIcon.classList.add('fa-chevron-right');
+                        }
+                    } else {
+                        sidebar.classList.remove('collapsed');
+                        contentArea.classList.remove('sidebar-collapsed');
+                        topBar.classList.remove('sidebar-collapsed');
+
+                        if (collapseIcon) {
+                            collapseIcon.classList.remove('fa-chevron-right');
+                            collapseIcon.classList.add('fa-chevron-left');
+                        }
+                    }
+                }
+            }
+
+            // Run when page loads
+            handleResponsiveSidebar();
+
+            // Run when screen size changes
+            window.addEventListener('resize', handleResponsiveSidebar);
+
+
+            // ==========================================
+            // CLOSE MOBILE SIDEBAR WHEN CLICKING OUTSIDE
+            // ==========================================
+            document.addEventListener('click', function(e) {
+
+                if (window.innerWidth < 1024) {
+
+                    if (
+                        !sidebar.contains(e.target) &&
+                        (!mobileToggle || !mobileToggle.contains(e.target))
+                    ) {
                         sidebar.classList.remove('translate-x-0');
                         sidebar.classList.add('-translate-x-full');
                     }
