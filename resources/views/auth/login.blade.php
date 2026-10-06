@@ -13,16 +13,16 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec2088',
+                            600: '#d91b78',
+                            700: '#b91566',
+                            800: '#991254',
+                            900: '#831046',
                         }
                     }
                 }
@@ -37,10 +37,9 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
             <div class="text-center mb-8">
                 <a href="{{ route('recruitment') }}" class="inline-flex items-center text-2xl font-bold text-primary-600">
-                    <i class="fas fa-graduation-cap mr-2"></i>
-                    Student Interview Booking
+                    <img src="{{ asset('logo2.png') }}" alt="Student Interview Booking" class="h-10 w-auto">
                 </a>
-                <h1 class="mt-4 text-xl font-semibold text-gray-900">Admin Login</h1>
+                <h1 class="mt-4 text-xl font-semibold text-gray-900">Hult Prize SAMS Login</h1>
                 <p class="text-gray-500 mt-1">Enter your credentials to access the admin panel</p>
             </div>
             
@@ -85,10 +84,6 @@
                     Login
                 </button>
             </form>
-            
-            <div class="mt-6 text-center text-sm text-gray-500">
-                <p>Default credentials: admin@example.com / password</p>
-            </div>
         </div>
     </div>
 </body>
