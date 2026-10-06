@@ -158,4 +158,8 @@ class AvailabilityService
         
         return $slots;
     }
+
+    public function getWeeklySchedule($weekStart, $trackId){
+
+    }
 }

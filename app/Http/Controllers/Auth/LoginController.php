@@ -9,8 +9,6 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    protected $redirectTo = '/admin';
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -29,11 +27,31 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        $credentials['is_admin'] = true;
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $user = Auth::user();
+
+            // Check if user is active
+            if (!$user->is_active) {
+                Auth::logout();
+                throw ValidationException::withMessages([
+                    'email' => ['Your account has been deactivated. Please contact administrator.'],
+                ]);
+            }
+
             $request->session()->regenerate();
-            return redirect()->intended($this->redirectTo);
+
+            // Redirect based on role
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/admin');
+                case 'highboard':
+                    return redirect()->intended('/highboard');
+                case 'board':
+                    return redirect()->intended('/board');
+                default:
+                    return redirect()->intended('/');
+            }
         }
 
         throw ValidationException::withMessages([

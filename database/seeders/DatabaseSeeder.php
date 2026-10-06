@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             StrengthSeeder::class,
             WeaknessSeeder::class,
             BoardMemberSeeder::class,
+            RoleUserSeeder::class,
         ]);
     }
 }
