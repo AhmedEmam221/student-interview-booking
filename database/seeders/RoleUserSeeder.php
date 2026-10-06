@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+class RoleUserSeeder extends Seeder
 {
     public function run(): void
     {
@@ -35,46 +35,46 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'High Board Marketing',
+            'name' => 'Marketing Board',
             'email' => 'Marketing@hultprizesams.tech',
             'password' => Hash::make('Marketing@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 16,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'High Board Media',
+            'name' => 'Media Board',
             'email' => 'Media@hultprizesams.tech',
             'password' => Hash::make('Media@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 13,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'High Board Events',
+            'name' => 'Events Board',
             'email' => 'Events@hultprizesams.tech',
             'password' => Hash::make('Events@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 14,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'High Board HR',
+            'name' => 'HR Board',
             'email' => 'Hr@hultprizesams.tech',
             'password' => Hash::make('Hr@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 15,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'High Board Competition',
+            'name' => 'Competition Board',
             'email' => 'Competition@hultprizesams.tech',
             'password' => Hash::make('Competition@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 17,
             'is_active' => true,
         ]);
@@ -86,91 +86,91 @@ class DatabaseSeeder extends Seeder
         */
 
         User::create([
-            'name' => 'C++ High Board',
+            'name' => 'C++ Board',
             'email' => 'Cplusplus@HultPrizeSams2027',
             'password' => Hash::make('Cplusplus@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 8,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'UI/UX High Board',
+            'name' => 'UI/UX Board',
             'email' => 'UIUX@HultPrizeSams2027',
             'password' => Hash::make('UIUX@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 6,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Flutter High Board',
+            'name' => 'Flutter Board',
             'email' => 'Flutter@HultPrizeSams2027',
             'password' => Hash::make('Flutter@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 11,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Front-End High Board',
+            'name' => 'Front-End Board',
             'email' => 'FrontEnd@HultPrizeSams2027',
             'password' => Hash::make('FrontEnd@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 3,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Back-End High Board',
+            'name' => 'Back-End Board',
             'email' => 'BackEnd@HultPrizeSams2027',
             'password' => Hash::make('BackEnd@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 4,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Network High Board',
+            'name' => 'Network Board',
             'email' => 'Network@HultPrizeSams2027',
             'password' => Hash::make('Network@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 12,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Database High Board',
+            'name' => 'Database Board',
             'email' => 'Database@HultPrizeSams2027',
             'password' => Hash::make('Database@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 10,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Python High Board',
+            'name' => 'Python Board',
             'email' => 'Python@HultPrizeSams2027',
             'password' => Hash::make('Python@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 7,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Cybersecurity High Board',
+            'name' => 'Cybersecurity Board',
             'email' => 'CyberSecurity@HultPrizeSams2027',
             'password' => Hash::make('CyberSec@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 5,
             'is_active' => true,
         ]);
 
         User::create([
-            'name' => 'Software Testing High Board',
+            'name' => 'Software Testing Board',
             'email' => 'SoftwareTesting@HultPrizeSams2027',
             'password' => Hash::make('SoftwareTesting@HultPrizeSams2027'),
-            'role' => 'highboard',
+            'role' => 'board',
             'track_id' => 9,
             'is_active' => true,
         ]);
