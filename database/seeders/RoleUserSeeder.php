@@ -87,7 +87,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'C++ Board',
-            'email' => 'Cplusplus@HultPrizeSams2027',
+            'email' => 'Cplusplus@hultprizesams.tech',
             'password' => Hash::make('Cplusplus@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 8,
@@ -96,7 +96,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'UI/UX Board',
-            'email' => 'UIUX@HultPrizeSams2027',
+            'email' => 'UIUX@hultprizesams.tech',
             'password' => Hash::make('UIUX@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 6,
@@ -105,7 +105,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Flutter Board',
-            'email' => 'Flutter@HultPrizeSams2027',
+            'email' => 'Flutter@hultprizesams.tech',
             'password' => Hash::make('Flutter@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 11,
@@ -114,7 +114,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Front-End Board',
-            'email' => 'FrontEnd@HultPrizeSams2027',
+            'email' => 'FrontEnd@hultprizesams.tech',
             'password' => Hash::make('FrontEnd@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 3,
@@ -123,7 +123,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Back-End Board',
-            'email' => 'BackEnd@HultPrizeSams2027',
+            'email' => 'BackEnd@hultprizesams.tech',
             'password' => Hash::make('BackEnd@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 4,
@@ -132,7 +132,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Network Board',
-            'email' => 'Network@HultPrizeSams2027',
+            'email' => 'Network@hultprizesams.tech',
             'password' => Hash::make('Network@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 12,
@@ -141,7 +141,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Database Board',
-            'email' => 'Database@HultPrizeSams2027',
+            'email' => 'Database@hultprizesams.tech',
             'password' => Hash::make('Database@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 10,
@@ -150,7 +150,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Python Board',
-            'email' => 'Python@HultPrizeSams2027',
+            'email' => 'Python@hultprizesams.tech',
             'password' => Hash::make('Python@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 7,
@@ -159,7 +159,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Cybersecurity Board',
-            'email' => 'CyberSecurity@HultPrizeSams2027',
+            'email' => 'CyberSecurity@hultprizesams.tech',
             'password' => Hash::make('CyberSec@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 5,
@@ -168,7 +168,7 @@ class RoleUserSeeder extends Seeder
 
         User::create([
             'name' => 'Software Testing Board',
-            'email' => 'SoftwareTesting@HultPrizeSams2027',
+            'email' => 'SoftwareTesting@hultprizesams.tech',
             'password' => Hash::make('SoftwareTesting@HultPrizeSams2027'),
             'role' => 'board',
             'track_id' => 9,
