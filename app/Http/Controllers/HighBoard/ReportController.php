@@ -34,6 +34,11 @@ class ReportController extends Controller
 
         $query = Application::with([
             'track',
+            'scheduleSlot',
+            'interviewBoardMember',
+            'referralBoardMember',
+            'strengths',
+            'weaknesses'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
@@ -76,17 +81,19 @@ class ReportController extends Controller
         }
 
         $applications = $query
-            ->join(
+            ->leftJoin(
                 'schedule_slots',
                 'applications.schedule_slot_id',
                 '=',
                 'schedule_slots.id'
             )
+            ->orderByRaw('schedule_slots.date IS NULL ASC')
             ->orderBy('schedule_slots.date', 'asc')
+            ->orderByRaw('schedule_slots.start_time IS NULL ASC')
             ->orderBy('schedule_slots.start_time', 'asc')
             ->select('applications.*')
             ->get();
-
+            
         $tracks = Track::whereIn('id', $allTrackIds)
             ->orderBy('name')
             ->get();
@@ -122,7 +129,12 @@ class ReportController extends Controller
         $allTrackIds = array_merge([$userTrack->id], $subTrackIds);
 
         $query = Application::with([
-            'track'
+            'track',
+            'scheduleSlot',
+            'interviewBoardMember',
+            'referralBoardMember',
+            'strengths',
+            'weaknesses'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
@@ -195,7 +207,12 @@ class ReportController extends Controller
         $allTrackIds = array_merge([$userTrack->id], $subTrackIds);
 
         $query = Application::with([
-            'track'
+            'track',
+            'scheduleSlot',
+            'interviewBoardMember',
+            'referralBoardMember',
+            'strengths',
+            'weaknesses'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
