@@ -25,12 +25,7 @@ class ReportController extends Controller
         return [
             'userTrack' => $userTrack,
             'query' => Application::with([
-                'track',
-                'scheduleSlot',
-                'interviewBoardMember',
-                'referralBoardMember',
-                'strengths',
-                'weaknesses'
+                'track'
             ])->where('applications.track_id', $userTrack->id)
         ];
     }

@@ -34,11 +34,6 @@ class ReportController extends Controller
 
         $query = Application::with([
             'track',
-            'scheduleSlot',
-            'interviewBoardMember',
-            'referralBoardMember',
-            'strengths',
-            'weaknesses'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
@@ -127,12 +122,7 @@ class ReportController extends Controller
         $allTrackIds = array_merge([$userTrack->id], $subTrackIds);
 
         $query = Application::with([
-            'track',
-            'scheduleSlot',
-            'interviewBoardMember',
-            'referralBoardMember',
-            'strengths',
-            'weaknesses'
+            'track'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
@@ -205,12 +195,7 @@ class ReportController extends Controller
         $allTrackIds = array_merge([$userTrack->id], $subTrackIds);
 
         $query = Application::with([
-            'track',
-            'scheduleSlot',
-            'interviewBoardMember',
-            'referralBoardMember',
-            'strengths',
-            'weaknesses'
+            'track'
         ])->whereIn('applications.track_id', $allTrackIds);
 
         // Filters
