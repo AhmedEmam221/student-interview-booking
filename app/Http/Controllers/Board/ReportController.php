@@ -81,13 +81,15 @@ class ReportController extends Controller
         $query = $this->applyFilters($query, $request);
 
         $applications = $query
-            ->join(
+            ->leftJoin(
                 'schedule_slots',
                 'applications.schedule_slot_id',
                 '=',
                 'schedule_slots.id'
             )
+            ->orderByRaw('schedule_slots.date IS NULL ASC')
             ->orderBy('schedule_slots.date', 'asc')
+            ->orderByRaw('schedule_slots.start_time IS NULL ASC')
             ->orderBy('schedule_slots.start_time', 'asc')
             ->select('applications.*')
             ->get();
