@@ -1,3 +1,4 @@
+```php
 <?php
 
 namespace App\Http\Controllers\Auth;
@@ -14,56 +15,89 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Display the login form.
+     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    /**
+     * Handle the login request.
+     */
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
         ]);
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $user = Auth::user();
-
-            // Check if user is active
-            if (!$user->is_active) {
-                Auth::logout();
-                throw ValidationException::withMessages([
-                    'email' => ['Your account has been deactivated. Please contact administrator.'],
-                ]);
-            }
-
-            $request->session()->regenerate();
-
-            // Redirect based on role
-            switch ($user->role) {
-                case 'admin':
-                    return redirect()->intended('/admin');
-                case 'highboard':
-                    return redirect()->intended('/highboard');
-                case 'board':
-                    return redirect()->intended('/board');
-                default:
-                    return redirect()->intended('/');
-            }
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+            throw ValidationException::withMessages([
+                'email' => [
+                    'The provided credentials do not match our records.',
+                ],
+            ]);
         }
 
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials do not match our records.'],
-        ]);
+        $request->session()->regenerate();
+
+        $user = Auth::user();
+
+        // Reject inactive accounts.
+        if (!$user->is_active) {
+            Auth::logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            throw ValidationException::withMessages([
+                'email' => [
+                    'Your account has been deactivated. Please contact administrator.',
+                ],
+            ]);
+        }
+
+        // Redirect directly to the dashboard for the user's role.
+        // Do not use redirect()->intended() here.
+        switch ($user->role) {
+            case 'admin':
+                return redirect()->route('admin.dashboard');
+
+            case 'highboard':
+                return redirect()->route('highboard.dashboard');
+
+            case 'board':
+                return redirect()->route('board.dashboard');
+
+            default:
+                Auth::logout();
+
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                throw ValidationException::withMessages([
+                    'email' => [
+                        'Your account does not have a valid role. Please contact administrator.',
+                    ],
+                ]);
+        }
     }
 
+    /**
+     * Log the user out.
+     */
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+
+        return redirect()->route('login');
     }
 }
+```
