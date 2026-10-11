@@ -1,4 +1,3 @@
-```php
 <?php
 
 namespace App\Http\Controllers\Auth;
@@ -100,4 +99,3 @@ class LoginController extends Controller
         return redirect()->route('login');
     }
 }
-```
